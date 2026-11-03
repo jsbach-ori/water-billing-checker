@@ -1,0 +1,411 @@
+/* 画面用スタイル。印刷用は末尾の @media print にまとめる */
+:root {
+  --c-text: #222;
+  --c-muted: #666;
+  --c-bg: #fff;
+  --c-subtle: #f4f4f4;
+  --c-border: #ccc;
+  --c-required: #fff8d6;      /* 必須の入力欄（Excel版の黄色に相当） */
+  --c-required-line: #c9b45c;
+  --c-answer: #e3f2fd;        /* 回答の入力欄（［違う］のとき） */
+  --c-answer-line: #7aaed6;
+  --c-optional: #fff;         /* 任意の入力欄 */
+  --c-optional-line: #aaa;
+  --c-ok: #1b7f3b;
+  --c-ok-bg: #e3f4e8;
+  --c-ng: #c62828;
+  --c-ng-bg: #fdeaea;
+  --c-blank: #8a6d00;
+  --c-blank-bg: #fff3c4;
+  --c-stale: #a04a00;
+  --c-stale-bg: #ffe8d1;
+  --c-na: #666;
+  --c-na-bg: #eee;
+  --c-link: #0b57d0;
+  /* 契約を横に並べる表（入力・計算結果・内訳）の列幅。上下の表で同じ値を使い、契約の列の位置をそろえる */
+  --col-head: 210px;
+  --col-contract: 150px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, "Yu Gothic UI", "Meiryo", sans-serif;
+  font-size: 14px;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+a { color: var(--c-link); }
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.app-header h1 { font-size: 1.2rem; margin: 0; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 16px 0; border-bottom: 1px solid var(--c-border); }
+.tabs button { padding: 6px 12px; border: 1px solid var(--c-border); border-bottom: none; background: var(--c-subtle); cursor: pointer; font: inherit; }
+.tabs button[aria-selected="true"] { background: var(--c-bg); font-weight: bold; }
+
+main { padding: 16px; max-width: 1280px; }
+
+.placeholder { color: var(--c-muted); }
+
+/* ---------- ブロック ---------- */
+.block { margin-bottom: 20px; }
+.block h2 { font-size: 1rem; margin: 0 0 8px; padding-left: 6px; border-left: 4px solid var(--c-link); }
+
+.info { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0; }
+.info dt { color: var(--c-muted); }
+.info dd { margin: 0; }
+
+.notice { padding: 8px 12px; background: var(--c-subtle); border-radius: 4px; }
+.notice-warn { background: var(--c-blank-bg); color: var(--c-blank); }
+
+.hint, .legend { color: var(--c-muted); margin: 0 0 8px; line-height: 1.7; }
+.swatch { display: inline-block; padding: 0 6px; border-radius: 3px; color: var(--c-text); }
+.sw-required { background: var(--c-required); border: 1px solid var(--c-required-line); }
+.sw-answer { background: var(--c-answer); border: 1px solid var(--c-answer-line); }
+.sw-optional { background: var(--c-optional); border: 1px solid var(--c-optional-line); }
+.sw-error { background: var(--c-ng-bg); border: 2px solid var(--c-ng); color: var(--c-ng); font-weight: bold; }
+
+select, input, textarea, button { font: inherit; }
+select { padding: 4px; max-width: 100%; }
+
+.inline-field { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-bottom: 8px; }
+.inline-field input { width: 9em; }
+.block-field { display: block; margin-top: 8px; }
+.block-field textarea { display: block; width: 100%; max-width: 600px; margin-top: 4px; }
+
+.help { margin: 0 0 8px; max-width: 800px; }
+.help summary { cursor: pointer; color: var(--c-link); }
+.help p { margin: 4px 0 4px 1em; line-height: 1.6; }
+.help .source { color: var(--c-muted); font-size: 12px; }
+.help-link { text-decoration: none; font-weight: bold; margin-left: 2px; }
+.row-note { display: block; font-size: 12px; color: var(--c-muted); white-space: normal; }
+
+/* ---------- 表 ---------- */
+.table-wrap { overflow-x: auto; }
+
+.grid { border-collapse: collapse; min-width: 720px; }
+.grid th, .grid td { border: 1px solid var(--c-border); padding: 4px 6px; vertical-align: middle; }
+.grid thead th { background: var(--c-subtle); white-space: nowrap; }
+.grid tbody th { text-align: left; font-weight: normal; background: var(--c-subtle); min-width: 150px; max-width: 220px; }
+.grid td { min-width: 140px; }
+.grid .num { text-align: right; font-variant-numeric: tabular-nums; }
+.grid .muted, .muted { color: var(--c-muted); }
+.grid .group-start > * { border-top: 2px solid #888; }
+
+/* 契約を横に並べる表：項目の列＋契約1〜5の列＋右端の列（計算結果は建物合計、ほかは空の列）。
+   列幅を固定して、上下の表で契約の列の位置をそろえる */
+.grid.entry, .grid.result, .grid.breakdown {
+  table-layout: fixed; min-width: 0; width: calc(var(--col-head) + 6 * var(--col-contract));
+}
+.grid.entry .col-head, .grid.result .col-head, .grid.breakdown .col-head { width: var(--col-head); }
+.grid.entry thead th:not(.col-head), .grid.result thead th:not(.col-head), .grid.breakdown thead th:not(.col-head) { width: var(--col-contract); }
+.grid.entry td, .grid.result td, .grid.breakdown td { min-width: 0; }
+/* 列幅が固定なので、契約の見出しは折り返してよい（ラベル「お客様番号」が番号の上に回る） */
+.grid thead th.contract-head { white-space: normal; }
+.grid.entry tbody th, .grid.result tbody th, .grid.breakdown tbody th { min-width: 0; max-width: none; }
+/* 右端の空の列：罫線も文字も出さない */
+.grid .col-spacer, .grid thead th.col-spacer, .grid .group-start > .col-spacer {
+  border: none !important; background: transparent !important; padding: 0;
+}
+
+.contract-head { text-align: left; vertical-align: top; }
+.contract-head.empty { color: #aaa; font-weight: normal; }
+.contract-title { display: block; font-size: 1rem; }
+/* お客様番号：電話の最初に読み上げるので、契約名と同じくらいの大きさの太字・等幅数字にする。
+   前に小さなグレーのラベル「お客様番号」を付ける（ラベルは選択・コピーの対象にしない） */
+.contract-no { display: block; }
+.contract-no-label { font-size: 11px; font-weight: normal; color: var(--c-muted); margin-right: 4px; user-select: none; }
+.contract-no-value {
+  font-size: 1rem; font-weight: bold; color: var(--c-text); white-space: nowrap;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em; user-select: all;
+}
+
+/* 物件情報と、右側の使い方の枠（連絡先もここに置く） */
+.top-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 360px); gap: 0 24px; align-items: start; }
+.guide {
+  margin-bottom: 20px; padding: 10px 14px; border: 1px solid #d0d0d0; border-radius: 6px;
+  background: #f6f6f6; color: #444; font-size: 13px; line-height: 1.7;
+}
+.guide p { margin: 0 0 6px; }
+.guide p:last-child { margin-bottom: 0; }
+.guide-phone { padding: 4px 0; }
+.guide-tel { font-size: 15px; font-weight: bold; font-variant-numeric: tabular-nums; }
+.guide-hours { font-size: 12px; color: var(--c-muted); }
+@media (max-width: 800px) {
+  .top-grid { grid-template-columns: 1fr; }
+}
+
+.result .strong td { font-weight: bold; }
+.result .building { background: #f0f5ff; }
+.result .overall th { font-weight: bold; }
+.result .method { text-align: center; font-size: 12px; }
+.result-note { font-size: 12px; color: var(--c-muted); margin: 6px 0 0; }
+
+/* ---------- 入力欄（役割ごとの色） ---------- */
+input[type="text"], textarea { border-radius: 3px; padding: 3px 4px; }
+.in-required { background: var(--c-required); border: 1px solid var(--c-required-line); }
+.in-answer { background: var(--c-answer); border: 1px solid var(--c-answer-line); }
+.in-optional { background: var(--c-optional); border: 1px solid var(--c-optional-line); }
+.in-optional-box { display: inline-flex; gap: 4px; align-items: center; }
+.grid input[type="text"] { width: 100%; min-width: 0; }
+.num-input { text-align: right; }
+.check { cursor: pointer; }
+
+/* エラーはどの色よりも優先して目立たせる */
+input.is-error, input.is-error:focus {
+  border: 2px solid var(--c-ng) !important;
+  background: var(--c-ng-bg) !important;
+}
+.field-error { display: block; color: var(--c-ng); font-size: 12px; font-weight: bold; }
+.field-error:empty { display: none; }
+.is-error-text { color: var(--c-ng); font-weight: bold; }
+
+/* Y・Z：金額と「円」、日付と「〜」を途中で改行させない */
+.nowrap { white-space: nowrap; }
+
+/* ---------- 計算額と確認 ---------- */
+.calc-cell { text-align: right; font-variant-numeric: tabular-nums; }
+.calc-part { font-size: 12px; color: var(--c-muted); }
+.calc-total { font-size: 1.35rem; font-weight: bold; }
+.calc-total small { font-size: 0.8rem; margin-left: 2px; }
+
+.confirm-cell { vertical-align: top; }
+.confirm-buttons { display: flex; gap: 6px; }
+.btn-confirm { flex: 1; padding: 6px 0; border: 1px solid #888; border-radius: 4px; background: #fafafa; cursor: pointer; font-weight: bold; }
+.btn-confirm:disabled { cursor: not-allowed; color: #aaa; border-color: #ddd; }
+.btn-match[aria-pressed="true"] { background: var(--c-ok); border-color: var(--c-ok); color: #fff; }
+.btn-mismatch[aria-pressed="true"] { background: var(--c-ng); border-color: var(--c-ng); color: #fff; }
+.btn-confirm:focus-visible, .answer-breakdown summary:focus-visible { outline: 3px solid var(--c-link); outline-offset: 2px; }
+
+.status { margin-top: 6px; padding: 2px 6px; text-align: center; font-weight: bold; border-radius: 3px; }
+/* W：内訳の確認のチェック欄（任意＝白）。押せないときは灰色 */
+.parts-confirm { margin-top: 6px; font-size: 12px; }
+.parts-confirm .check { align-items: flex-start; }
+.parts-confirm label:has(input:disabled) { color: #999; cursor: not-allowed; }
+/* AB：状態の「（内訳も確認）」はひとかたまり。折り返すときはカッコの前で改行する */
+.status-sub { display: inline-block; }
+/* AD：前回期間。1行に収まるときは詰めて並べ、2行になるときは終了日を右寄せ */
+.period { display: inline-flex; flex-wrap: wrap; max-width: 100%; vertical-align: top; }
+.period-end { margin-left: auto; }
+/* AF：水道＋下水道が合計と合わないときの警告（赤。印刷にも出す） */
+.sum-warn { margin-top: 4px; padding: 2px 4px; font-size: 12px; font-weight: bold; color: var(--c-ng); background: var(--c-ng-bg); border-left: 3px solid var(--c-ng); }
+.answer-area { margin-top: 6px; padding: 6px; border: 1px dashed var(--c-answer-line); border-radius: 4px; }
+.answer-label { display: block; font-size: 12px; margin-bottom: 4px; }
+.diff { margin: 4px 0; padding: 2px 4px; font-weight: bold; text-align: right; }
+.answer-breakdown summary { cursor: pointer; font-size: 12px; color: var(--c-link); margin: 4px 0; }
+.suggest { margin-top: 6px; padding: 4px 6px; font-size: 12px; background: var(--c-stale-bg); color: var(--c-stale); border-radius: 3px; }
+
+/* ---------- 判定 ---------- */
+.judge { text-align: center; font-weight: bold; white-space: nowrap; }
+.j-match { color: var(--c-ok); background: var(--c-ok-bg); }
+.j-diff { color: var(--c-ng); background: var(--c-ng-bg); }
+.j-blank { color: var(--c-blank); background: var(--c-blank-bg); }
+.j-stale { color: var(--c-stale); background: var(--c-stale-bg); }
+.j-na { color: var(--c-na); background: var(--c-na-bg); font-weight: normal; }
+/* 合計で照合した契約の水道・下水道の判定欄（小さなグレーの文字。判定ではないので色の背景は付けない） */
+.judge-total-only { color: var(--c-muted); font-size: 11px; font-weight: normal; }
+.building.partial { text-align: center; }
+.j-period, .j-error { color: #fff; background: var(--c-ng); }
+
+.alert-list { margin: 0 0 8px; padding: 0; list-style: none; }
+.alert-list li { padding: 6px 12px; margin-bottom: 4px; border-left: 4px solid; font-weight: bold; }
+.alert-error { background: var(--c-ng-bg); color: var(--c-ng); border-color: var(--c-ng); }
+.alert-warn { background: var(--c-stale-bg); color: var(--c-stale); border-color: var(--c-stale); }
+
+/* ---------- 操作 ---------- */
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.actions button { padding: 6px 14px; cursor: pointer; }
+
+details summary { cursor: pointer; font-weight: bold; margin-bottom: 8px; }
+.help summary, .answer-breakdown summary { font-weight: normal; }
+
+/* ---------- ボタン ---------- */
+.btn-primary {
+  padding: 10px 22px; border: none; border-radius: 6px; cursor: pointer;
+  background: var(--c-link); color: #fff; font-weight: bold; font-size: 1rem;
+}
+.btn-primary:hover { background: #0842a0; }
+.btn-quiet {
+  padding: 3px 10px; border: 1px solid #bbb; border-radius: 4px; cursor: pointer;
+  background: #fff; color: var(--c-muted); font-size: 12px;
+}
+button:disabled { cursor: not-allowed; opacity: 0.5; }
+
+/* PDF保存：照合結果のすぐ下。ボタンのすぐ横に、ファイル名と注意を縦に並べる（注意は橙。赤は使わない） */
+.pdf-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px 16px; margin-top: 12px; }
+.pdf-info { display: flex; flex-direction: column; gap: 4px; flex: 1 1 320px; min-width: 0; padding-top: 2px; }
+.pdf-filename { font-size: 13px; word-break: break-all; }
+.pdf-warn { font-size: 13px; color: var(--c-stale); background: var(--c-stale-bg); padding: 4px 8px; border-radius: 4px; border-left: 4px solid var(--c-stale); }
+
+/* 入力をクリア：ページの最下部の右端に、控えめに置く（押し間違いで入力が消えないように） */
+.actions-bottom { display: flex; justify-content: flex-end; margin-top: 40px; padding-top: 12px; border-top: 1px dashed #ddd; }
+
+/* ---------- 作業時間タイマー（ヘッダー） ---------- */
+.timer { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 13px; }
+.timer-label { color: var(--c-muted); }
+.timer-clock { font-size: 1.2rem; font-weight: bold; font-variant-numeric: tabular-nums; color: var(--c-muted); }
+.timer-clock.running { color: var(--c-text); }
+.timer-phone { font-variant-numeric: tabular-nums; color: var(--c-link); }
+.timer button { padding: 2px 10px; cursor: pointer; }
+.timer button[aria-pressed="true"] { background: var(--c-link); color: #fff; border: 1px solid var(--c-link); }
+.timer-message { color: var(--c-ok); font-weight: bold; }
+
+/* ---------- 確認パネル（印刷後） ---------- */
+.confirm-dialog { max-width: 460px; border: 1px solid #999; border-radius: 8px; padding: 20px 24px; }
+.confirm-dialog::backdrop { background: rgba(0, 0, 0, 0.35); }
+.confirm-dialog h2 { margin: 0 0 8px; font-size: 1.1rem; }
+.confirm-dialog p { line-height: 1.6; }
+.dialog-buttons { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 12px; }
+.dialog-buttons .btn-quiet { font-size: 13px; padding: 8px 12px; }
+
+/* ---------- 作業時間タブ ---------- */
+.summary, .logs { min-width: 0; }
+.reduction { font-size: 1.05rem; }
+.manual-form { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: flex-end; }
+.manual-form label { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+.manual-form input[type="text"] { width: 9em; }
+.manual-form .wide input { width: 18em; }
+.manual-count { font-size: 14px; padding: 4px 0; }
+.log-actions { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
+
+/* ---------- 物件マスタタブ ---------- */
+.m-table { min-width: 0; }
+.m-table td { min-width: 0; }
+.m-selected td { background: #f0f5ff; }
+.m-ops { white-space: nowrap; }
+.m-ops button { margin-right: 4px; padding: 2px 8px; cursor: pointer; }
+.m-ops button[aria-pressed="true"] { background: var(--c-link); color: #fff; border: 1px solid var(--c-link); }
+.m-over td { background: var(--c-blank-bg); color: var(--c-muted); }
+.m-over-note { display: block; font-size: 11px; color: var(--c-blank); }
+.m-actions { margin: 8px 0; }
+.m-actions button { padding: 4px 12px; cursor: pointer; }
+.m-form { margin-top: 8px; padding: 12px 14px; border: 1px solid var(--c-border); border-radius: 6px; background: #fafafa; max-width: 900px; }
+.m-form h3 { margin: 0 0 8px; font-size: 0.95rem; }
+.m-fields { display: flex; flex-wrap: wrap; gap: 10px 16px; }
+.m-field { display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+.m-field input[type="text"], .m-field select { font-size: 14px; width: 12em; }
+.m-field input.m-wide { width: 24em; max-width: 100%; }
+.m-hint { color: var(--c-muted); font-size: 11px; }
+.m-fixed { font-size: 14px; font-weight: bold; padding: 3px 0; }
+.m-form-buttons { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+.m-form-buttons .btn-primary { padding: 6px 18px; font-size: 14px; }
+
+/* ---------- 料金表・設定タブ ---------- */
+.settings-form { display: flex; flex-direction: column; gap: 14px; max-width: 640px; }
+.settings-form .m-field { font-size: 13px; }
+.settings-form .m-field input[type="text"] { width: 10em; }
+.rate-tables { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: flex-start; }
+.rate-tables h3 { font-size: 0.9rem; margin: 0 0 4px; }
+.grid.rate { min-width: 0; }
+.grid.rate td, .grid.rate tbody th { min-width: 0; }
+.grid.rate tbody th { white-space: nowrap; }
+.rate-notes { color: var(--c-muted); font-size: 13px; line-height: 1.7; padding-left: 1.2em; }
+
+.print-only, .print-value { display: none; }
+
+@media (max-width: 600px) {
+  main { padding: 12px 16px; }
+  .info { grid-template-columns: 1fr; }
+}
+
+/* ---------- 印刷（A4縦。強制的な改ページはせず、表の途中ではページを切らない）
+   1〜3契約の物件は倍率100%で1ページ、5契約の物件は2ページ以内を目指す。
+   まず行の高さ・余白・間隔を詰める。表の文字は9pt（下限は8.5pt） ---------- */
+@media print {
+  @page { size: A4 portrait; margin: 10mm; }
+
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body { font-size: 9.5pt; line-height: 1.3; }
+  main { padding: 0; max-width: none; }
+
+  /* 見出し：タイトルの横に作成日時とファイル名 */
+  .print-header.print-only { display: flex !important; justify-content: space-between; align-items: flex-end; gap: 12pt; margin: 0 0 4pt; padding-bottom: 2pt; border-bottom: 1px solid #888; }
+  .print-title { font-size: 12pt; margin: 0; }
+  .print-meta { margin: 0; font-size: 8.5pt; line-height: 1.25; text-align: right; }
+
+  .block { margin-bottom: 5pt; }
+  .block h2 { font-size: 10pt; margin: 0 0 2pt; padding-left: 4pt; border-left-width: 3pt; break-after: avoid; }
+  .top-grid { display: block; }
+
+  /* 物件情報は1〜2行に詰める（項目を横に並べる） */
+  .building-row { display: inline-block; margin-right: 12pt; }
+  .info { display: inline-flex; flex-wrap: wrap; gap: 0 4pt; margin: 0; }
+  .info dt::after { content: "："; }
+  .info dd { margin-right: 10pt; }
+  .notice { padding: 2pt 6pt; }
+
+  .inline-field { margin-bottom: 2pt; }
+  .block-field { margin-top: 2pt; }
+
+  /* P：「計算結果と照合」の見出し・警告・表・注記は同じページに置く */
+  .keep-together { break-inside: avoid; }
+
+  /* 表は途中でページを切らない（収まらなければ表ごと次のページへ） */
+  .table-wrap { overflow: visible; break-inside: avoid; }
+  .alert-list { margin-bottom: 2pt; }
+  .alert-list li { padding: 1pt 6pt; margin-bottom: 1pt; font-size: 9pt; border-left-width: 3pt; }
+
+  /* 表は用紙の幅に収める。契約が無い列は出さない（その分、列が広がって折り返しが減る） */
+  .grid, .grid.entry, .grid.result, .grid.breakdown { min-width: 0; width: 100%; font-size: 9pt; line-height: 1.2; table-layout: fixed; }
+  .grid th, .grid td { padding: 1pt 3pt; min-width: 0; max-width: none; word-break: break-all; }
+  .grid .col-empty { display: none; }
+  .grid .group-start > * { border-top-width: 1.5px; }
+  /* 行の見出しの列：「下水道　差額（回答－計算）」が1行に収まる幅 */
+  .grid thead th:first-child, .grid.entry .col-head, .grid.result .col-head, .grid.breakdown .col-head { width: 46mm; }
+  /* 契約の列と右端の列は、残りの幅を同じ割合で分ける（上下の表で列の数と幅が同じになる） */
+  .grid.entry thead th:not(.col-head), .grid.result thead th:not(.col-head), .grid.breakdown thead th:not(.col-head) { width: auto; }
+  .grid tbody th { min-width: 0; }
+  .grid thead th { white-space: normal; }
+  .result tbody th { white-space: nowrap; word-break: normal; }
+  .judge { white-space: normal; word-break: normal; }
+  .judge-total-only { font-size: 8.5pt; }
+  .grid tr { break-inside: avoid; }
+  .contract-title { font-size: 9pt; }
+  .contract-no-label { font-size: 8.5pt; }
+  .contract-no-value { font-size: 9.5pt; }
+
+  /* 計算額：水道・下水道を1行に並べ、合計は少し大きく。
+     Y：金額と「円」は分けない（.nowrap）。折り返すときは「水道」「下水道」「合計」と金額の間で改行する */
+  .calc-cell, .calc-cell * { word-break: normal; }
+  .calc-part { display: inline-block; margin-left: 3pt; font-size: 8.5pt; }
+  .calc-total { font-size: 9.5pt; }
+  .calc-total small { font-size: 8.5pt; margin-left: 0; }
+  .diff { word-break: normal; }
+
+  /* T：料金確認の入力欄は印刷せず、値を写した文字（.print-value）をセルの中で折り返して出す。
+     入力欄のままだと、欄の幅がセルより広いときに右寄せの数字が隣の列にはみ出すため */
+  #tab-check input[type="text"], #tab-check textarea { display: none !important; }
+  .print-value { display: block; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-all; min-height: 1.2em; }
+  .print-value.num { text-align: right; }
+  .inline-field .print-value { display: inline; }
+  select {
+    border: none !important; background: none !important; padding: 0; color: var(--c-text);
+    appearance: none; -webkit-appearance: none; font-size: inherit; line-height: inherit; height: auto;
+  }
+  .answer-area { border: none; padding: 0; margin-top: 1pt; }
+  .answer-label { font-size: 9pt; margin-bottom: 0; }
+  .diff { margin: 0; padding: 0 2pt; }
+  .answer-breakdown summary { display: none; }
+  /* AB：5契約の列（中は約22mm）に「（内訳も確認）」（8.5pt・7文字で約21mm）を1行で収めるため、左右の余白はなし */
+  .status { margin-top: 0; padding: 0; }
+  .status-sub { font-size: 8.5pt; }
+  .sum-warn { font-size: 8.5pt; margin-top: 1pt; padding: 0 2pt; border-left-width: 2pt; word-break: normal; }
+  .result-note { font-size: 9pt; margin-top: 2pt; line-height: 1.3; }
+
+  /* 内訳（税抜・月別）は、画面で開いているときだけ印刷する（閉じていれば見出しも出さない） */
+  .breakdown-block:has(> details:not([open])) { display: none; }
+  details summary { margin-bottom: 2pt; }
+}

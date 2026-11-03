@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>水道料金 照会・検算ツール</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header no-print">
+    <h1>水道料金 照会・検算ツール</h1>
+    <div id="timer" class="timer"></div>
+  </header>
+  <!-- 印刷だけに出す見出し。作成日時とファイル名はタイトルの横に置く（最後のページにあふれないように） -->
+  <div class="print-only print-header">
+    <h1 class="print-title">水道料金 照会・検算記録</h1>
+    <p class="print-meta"><span id="print-created"></span><br><span id="print-filename"></span></p>
+  </div>
+
+  <nav class="tabs no-print" role="tablist">
+    <button type="button" role="tab" data-tab="check" aria-selected="true">料金確認</button>
+    <button type="button" role="tab" data-tab="master" aria-selected="false">物件マスタ</button>
+    <button type="button" role="tab" data-tab="timelog" aria-selected="false">作業時間</button>
+    <button type="button" role="tab" data-tab="settings" aria-selected="false">料金表・設定</button>
+  </nav>
+
+  <main>
+    <section id="tab-check" class="tab-panel" role="tabpanel"></section>
+    <section id="tab-master" class="tab-panel" role="tabpanel" hidden></section>
+    <section id="tab-timelog" class="tab-panel" role="tabpanel" hidden></section>
+    <section id="tab-settings" class="tab-panel" role="tabpanel" hidden></section>
+  </main>
+
+  <!-- 印刷ダイアログを閉じたあとの確認（SPEC 7.6） -->
+  <dialog id="print-confirm" class="confirm-dialog no-print" aria-labelledby="print-confirm-title">
+    <h2 id="print-confirm-title">PDFを保存しましたか？</h2>
+    <p>保存した場合は、作業時間を記録して計測を終えます。<br>保存しなかった場合（印刷をやめた場合など）は、計測を続けます。</p>
+    <div class="dialog-buttons">
+      <button type="button" id="print-saved" class="btn-primary">保存した（作業時間を記録）</button>
+      <button type="button" id="print-not-saved" class="btn-quiet">記録しない（計測を続ける）</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

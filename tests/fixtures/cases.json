@@ -1,0 +1,937 @@
+{
+  "bimonthly": [
+    {
+      "id": "OFF-20-59",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 20,
+        "usage": 59,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          30,
+          29
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 5877,
+          "tax": 821,
+          "total": 9038
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 5300,
+          "tax": 642,
+          "total": 7062
+        },
+        "total": 16100
+      }
+    },
+    {
+      "id": "OFF-13-20",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 13,
+        "usage": 20,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          10,
+          10
+        ],
+        "water": {
+          "base": 1720,
+          "metered": 220,
+          "tax": 194,
+          "total": 2134
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 440,
+          "tax": 156,
+          "total": 1716
+        },
+        "total": 3850
+      }
+    },
+    {
+      "id": "OFF-20-20",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 20,
+        "usage": 20,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          10,
+          10
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 220,
+          "tax": 256,
+          "total": 2816
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 440,
+          "tax": 156,
+          "total": 1716
+        },
+        "total": 4532
+      }
+    },
+    {
+      "id": "OFF-25-20",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 25,
+        "usage": 20,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          10,
+          10
+        ],
+        "water": {
+          "base": 2920,
+          "metered": 220,
+          "tax": 314,
+          "total": 3454
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 440,
+          "tax": 156,
+          "total": 1716
+        },
+        "total": 5170
+      }
+    },
+    {
+      "id": "OFF-13-40",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 13,
+        "usage": 40,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          20,
+          20
+        ],
+        "water": {
+          "base": 1720,
+          "metered": 2780,
+          "tax": 450,
+          "total": 4950
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 2640,
+          "tax": 376,
+          "total": 4136
+        },
+        "total": 9086
+      }
+    },
+    {
+      "id": "OFF-20-40",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 20,
+        "usage": 40,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          20,
+          20
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 2780,
+          "tax": 512,
+          "total": 5632
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 2640,
+          "tax": 376,
+          "total": 4136
+        },
+        "total": 9768
+      }
+    },
+    {
+      "id": "OFF-25-40",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 25,
+        "usage": 40,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          20,
+          20
+        ],
+        "water": {
+          "base": 2920,
+          "metered": 2780,
+          "tax": 570,
+          "total": 6270
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 2640,
+          "tax": 376,
+          "total": 4136
+        },
+        "total": 10406
+      }
+    },
+    {
+      "id": "OFF-13-100",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 13,
+        "usage": 100,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          50,
+          50
+        ],
+        "water": {
+          "base": 1720,
+          "metered": 14120,
+          "tax": 1584,
+          "total": 17424
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 12240,
+          "tax": 1336,
+          "total": 14696
+        },
+        "total": 32120
+      }
+    },
+    {
+      "id": "OFF-20-100",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 20,
+        "usage": 100,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          50,
+          50
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 14120,
+          "tax": 1646,
+          "total": 18106
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 12240,
+          "tax": 1336,
+          "total": 14696
+        },
+        "total": 32802
+      }
+    },
+    {
+      "id": "OFF-25-100",
+      "source": "東京都水道局 公式計算例・早見表（23区）",
+      "input": {
+        "caliber": 25,
+        "usage": 100,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          50,
+          50
+        ],
+        "water": {
+          "base": 2920,
+          "metered": 14120,
+          "tax": 1704,
+          "total": 18744
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 12240,
+          "tax": 1336,
+          "total": 14696
+        },
+        "total": 33440
+      }
+    },
+    {
+      "id": "EX-0m3",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "使用水量0（基本料金のみ）",
+      "input": {
+        "caliber": 20,
+        "usage": 0,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          0,
+          0
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 0,
+          "tax": 234,
+          "total": 2574
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 0,
+          "tax": 112,
+          "total": 1232
+        },
+        "total": 3806
+      }
+    },
+    {
+      "id": "EX-odd",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "奇数水量（1か月目に1m³多く配分）",
+      "input": {
+        "caliber": 13,
+        "usage": 21,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          11,
+          10
+        ],
+        "water": {
+          "base": 1720,
+          "metered": 348,
+          "tax": 206,
+          "total": 2274
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 550,
+          "tax": 167,
+          "total": 1837
+        },
+        "total": 4111
+      }
+    },
+    {
+      "id": "EX-free",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "基本料金無償化（13〜25mm）",
+      "input": {
+        "caliber": 20,
+        "usage": 59,
+        "taxRatePercent": 10,
+        "basicFree": true
+      },
+      "expected": {
+        "months": [
+          30,
+          29
+        ],
+        "water": {
+          "base": 0,
+          "metered": 5877,
+          "tax": 587,
+          "total": 6464
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 5300,
+          "tax": 642,
+          "total": 7062
+        },
+        "total": 13526
+      }
+    },
+    {
+      "id": "EX-free-30mm",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "無償化対象外の口径30mm",
+      "input": {
+        "caliber": 30,
+        "usage": 59,
+        "taxRatePercent": 10,
+        "basicFree": true
+      },
+      "expected": {
+        "months": [
+          30,
+          29
+        ],
+        "water": {
+          "base": 6870,
+          "metered": 12567,
+          "tax": 1943,
+          "total": 21380
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 5300,
+          "tax": 642,
+          "total": 7062
+        },
+        "total": 28442
+      }
+    },
+    {
+      "id": "EX-tax12",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "消費税率12%",
+      "input": {
+        "caliber": 20,
+        "usage": 59,
+        "taxRatePercent": 12,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          30,
+          29
+        ],
+        "water": {
+          "base": 2340,
+          "metered": 5877,
+          "tax": 986,
+          "total": 9203
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 5300,
+          "tax": 770,
+          "total": 7190
+        },
+        "total": 16393
+      }
+    },
+    {
+      "id": "LG-30-100",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "大口径（公式表の結合セル読取り値・要公式確認）",
+      "input": {
+        "caliber": 30,
+        "usage": 100,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          50,
+          50
+        ],
+        "water": {
+          "base": 6870,
+          "metered": 21300,
+          "tax": 2817,
+          "total": 30987
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 12240,
+          "tax": 1336,
+          "total": 14696
+        },
+        "total": 45683
+      }
+    },
+    {
+      "id": "LG-50-1000",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "大口径（要公式確認）",
+      "input": {
+        "caliber": 50,
+        "usage": 1000,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          500,
+          500
+        ],
+        "water": {
+          "base": 41440,
+          "metered": 372000,
+          "tax": 41344,
+          "total": 454784
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 240240,
+          "tax": 24136,
+          "total": 265496
+        },
+        "total": 720280
+      }
+    },
+    {
+      "id": "LG-100-50",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "大口径（要公式確認）",
+      "input": {
+        "caliber": 100,
+        "usage": 50,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          25,
+          25
+        ],
+        "water": {
+          "base": 189136,
+          "metered": 20200,
+          "tax": 20933,
+          "total": 230269
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 4040,
+          "tax": 516,
+          "total": 5676
+        },
+        "total": 235945
+      }
+    },
+    {
+      "id": "LG-25-3000",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "最上位段階（1,001m³以上）",
+      "input": {
+        "caliber": 25,
+        "usage": 3000,
+        "taxRatePercent": 10,
+        "basicFree": false
+      },
+      "expected": {
+        "months": [
+          1500,
+          1500
+        ],
+        "water": {
+          "base": 2920,
+          "metered": 1094220,
+          "tax": 109714,
+          "total": 1206854
+        },
+        "sewer": {
+          "base": 1120,
+          "metered": 895240,
+          "tax": 89636,
+          "total": 985996
+        },
+        "total": 2192850
+      }
+    }
+  ],
+  "prorated": [
+    {
+      "id": "PR-OFF",
+      "source": "東京都水道局 公式計算例（月途中の使用開始・中止）",
+      "input": {
+        "caliber": 20,
+        "daysInMonth": 31,
+        "daysUsed": 18,
+        "usage": 15,
+        "taxRatePercent": 10
+      },
+      "expected": {
+        "converted": 25,
+        "water_monthly_pretax": 3375,
+        "water_prorated_pretax": 1959,
+        "water_total": 2154,
+        "sewer_base": 560,
+        "sewer_metered": 770,
+        "sewer_total": 1463,
+        "total": 3617
+      }
+    },
+    {
+      "id": "PR-15days",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "使用15日以内→下水道定額280円",
+      "input": {
+        "caliber": 20,
+        "daysInMonth": 30,
+        "daysUsed": 15,
+        "usage": 10,
+        "taxRatePercent": 10
+      },
+      "expected": {
+        "converted": 20,
+        "water_monthly_pretax": 2560,
+        "water_prorated_pretax": 1280,
+        "water_total": 1408,
+        "sewer_base": 280,
+        "sewer_metered": 220,
+        "sewer_total": 550,
+        "total": 1958
+      }
+    },
+    {
+      "id": "PR-16days",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "16日以上→下水道定額560円",
+      "input": {
+        "caliber": 13,
+        "daysInMonth": 30,
+        "daysUsed": 16,
+        "usage": 10,
+        "taxRatePercent": 10
+      },
+      "expected": {
+        "converted": 18,
+        "water_monthly_pretax": 1994,
+        "water_prorated_pretax": 1063,
+        "water_total": 1169,
+        "sewer_base": 560,
+        "sewer_metered": 220,
+        "sewer_total": 858,
+        "total": 2027
+      }
+    },
+    {
+      "id": "PR-full",
+      "source": "Excel版と同一ロジックで算出",
+      "note": "全日使用＝通常の1か月分",
+      "input": {
+        "caliber": 20,
+        "daysInMonth": 31,
+        "daysUsed": 31,
+        "usage": 30,
+        "taxRatePercent": 10
+      },
+      "expected": {
+        "converted": 30,
+        "water_monthly_pretax": 4190,
+        "water_prorated_pretax": 4190,
+        "water_total": 4609,
+        "sewer_base": 560,
+        "sewer_metered": 2720,
+        "sewer_total": 3608,
+        "total": 8217
+      }
+    }
+  ],
+  "judgement": [
+    {
+      "id": "J-A",
+      "note": "初期値（20mm・59m³・回答すべて一致）",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 59,
+        "ansWater": 9038,
+        "ansSewer": 7062,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "一致",
+        "sewer": "一致",
+        "overall": "一致"
+      }
+    },
+    {
+      "id": "J-B",
+      "note": "水道+10円／下水道−10円で合計は一致",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 59,
+        "ansWater": 9048,
+        "ansSewer": 7052,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "差異あり",
+        "sewer": "差異あり",
+        "overall": "差異あり"
+      }
+    },
+    {
+      "id": "J-C",
+      "note": "合計のみ回答（一致）",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 59,
+        "ansWater": null,
+        "ansSewer": null,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "未入力",
+        "sewer": "未入力",
+        "overall": "一致"
+      }
+    },
+    {
+      "id": "J-D",
+      "note": "合計のみ回答（不一致）",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 59,
+        "ansWater": null,
+        "ansSewer": null,
+        "ansTotal": 16000
+      },
+      "expected": {
+        "water": "未入力",
+        "sewer": "未入力",
+        "overall": "差異あり"
+      }
+    },
+    {
+      "id": "J-E",
+      "note": "使用水量未入力",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": null,
+        "ansWater": 9038,
+        "ansSewer": 7062,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "未入力",
+        "sewer": "未入力",
+        "overall": "未入力"
+      }
+    },
+    {
+      "id": "J-F",
+      "note": "終了日未入力",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": null,
+        "usage": 59,
+        "ansWater": 9038,
+        "ansSewer": 7062,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "未入力",
+        "sewer": "未入力",
+        "overall": "未入力"
+      }
+    },
+    {
+      "id": "J-G",
+      "note": "終了日が開始日より前",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-08-01",
+        "usage": 59,
+        "ansWater": 9038,
+        "ansSewer": 7062,
+        "ansTotal": 16100
+      },
+      "expected": {
+        "water": "期間エラー",
+        "sewer": "期間エラー",
+        "overall": "期間エラー"
+      }
+    },
+    {
+      "id": "J-H",
+      "note": "使用水量0・回答一致",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 0,
+        "ansWater": 2574,
+        "ansSewer": 1232,
+        "ansTotal": null
+      },
+      "expected": {
+        "water": "一致",
+        "sewer": "一致",
+        "overall": "一致"
+      }
+    },
+    {
+      "id": "J-I",
+      "note": "水道のみ回答",
+      "input": {
+        "caliber": 20,
+        "basicFree": false,
+        "taxRatePercent": 10,
+        "start": "2026-08-20",
+        "end": "2026-10-20",
+        "usage": 59,
+        "ansWater": 9038,
+        "ansSewer": null,
+        "ansTotal": null
+      },
+      "expected": {
+        "water": "一致",
+        "sewer": "未入力",
+        "overall": "未入力"
+      }
+    }
+  ],
+  "filename": [
+    {
+      "id": "FN-1",
+      "note": "1契約",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          }
+        ]
+      },
+      "expected": "V001水道20260820-1020.pdf"
+    },
+    {
+      "id": "FN-3",
+      "note": "3契約・期間同じ",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          },
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          },
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          }
+        ]
+      },
+      "expected": "V001水道20260820-1020（3件）.pdf"
+    },
+    {
+      "id": "FN-earliest",
+      "note": "開始日が最も早い契約の期間を使う",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          },
+          {
+            "start": "2026-08-10",
+            "end": "2026-10-09"
+          }
+        ]
+      },
+      "expected": "V001水道20260810-1009（2件）.pdf"
+    },
+    {
+      "id": "FN-missing",
+      "note": "終了日が欠けた契約がある→生成しない",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": null
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "FN-invalid",
+      "note": "終了日≦開始日→生成しない",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": "2026-08-20"
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "id": "FN-blank",
+      "note": "期間未入力の契約は件数に含めない",
+      "input": {
+        "buildingId": "V001",
+        "contracts": [
+          {
+            "start": "2026-08-20",
+            "end": "2026-10-20"
+          },
+          {
+            "start": null,
+            "end": null
+          }
+        ]
+      },
+      "expected": "V001水道20260820-1020.pdf"
+    }
+  ]
+}
